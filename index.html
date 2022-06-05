@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Books-Online</title>
+  </head>
+  <body onload="onInit()">
+    <section class="header">
+      <h1>books-online</h1>
+      <img class="book-logo" src="imgs/book.png" />
+    </section>
+
+    <section class="books-toolbar">
+      <section class="book-filter">
+        <h3>Filter By:</h3>
+        <input
+          type="text"
+          name="filter-txt"
+          oninput="onSetFilterBy({txt: this.value})"
+          placeholder="Start typing..."
+        />
+        <br />
+        <label>
+          <span>Maximum Price:</span>
+          <input
+            type="range"
+            min="0"
+            max="70"
+            value="70"
+            class="filter-price-range"
+            onchange="this.title=this.value; onSetFilterBy({maxPrice: +this.value})"
+          />
+        </label>
+        <label>
+          <span class="rating-txt">Minimum Rating:</span>
+          <input
+            type="range"
+            min="0"
+            max="10"
+            value="0"
+            class="filter-rating-range"
+            onchange="this.title=this.value; onSetFilterBy({minRating: +this.value})"
+          />
+        </label>
+      </section>
+      <div class="create-books">
+        <button class="create-btn" onclick="onCreateBook()">
+          Create new book
+        </button>
+        <form onsubmit="onAddBook(event)">
+          <label for="create-name">Name: </label>
+          <input
+            type="text"
+            name="create-name"
+            placeholder="Enter Book's Name"
+          />
+          <label for="create-price">Price: </label>
+          <input
+            type="text"
+            name="create-price"
+            placeholder="Enter Book's Price"
+          />
+          <button>Add</button>
+        </form>
+      </div>
+    </section>
+    <section class="books">
+      <table>
+        <thead>
+          <tr>
+            <td class="books-title">Id</td>
+            <td class="books-title" onclick="onSortByTitle()">Title</td>
+            <td class="books-title" onclick="onSortByPrice()">Price</td>
+            <td class="books-title" colspan="3">Actions</td>
+          </tr>
+        </thead>
+        <tbody class="books-body"></tbody>
+      </table>
+      <div class="paging-container">
+        <button class="prev-btn" onclick="onPrevPage()">◀</button>
+        <div class="page-num-container"></div>
+        <button class="next-btn" onclick="onNextPage()">▶</button>
+      </div>
+    </section>
+    <div class="book-modal">
+      <h2></h2>
+      <img class="book-img" />
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat
+        repellendus similique laboriosam omnis officia atque natus excepturi,
+        eos blanditiis consequuntur, perspiciatis facere inventore voluptatibus
+        neque ducimus voluptatum qui. Neque, reiciendis?
+      </p>
+      <span class="book-price"></span>
+      <div class="rate-container">
+        <p>Rating:</p>
+        <button class="add-btn" onclick="onAddRating(this.value)">+</button>
+        <input name="rating" type="text" class="rate-input" value="0" />
+        <button class="sub-btn" onclick="onSubRating(this.value)">-</button>
+      </div>
+      <button class="close-modal-btn" onclick="onCloseModal()">Close</button>
+    </div>
+    <script src="/js/book.controller.js"></script>
+    <script src="/js/service/util.service.js"></script>
+    <script src="/js/service/storage.service.js"></script>
+    <script src="/js/service/book.service.js"></script>
+  </body>
+</html>
