@@ -22,6 +22,7 @@
           oninput="onSetFilterBy({txt: this.value})"
           placeholder="Start typing..."
           class="input-txt"
+          autocomplete = "off"
         />
         <label for="price-filter">Maximum Price: </label>
         <input
@@ -56,6 +57,7 @@
             name="create-name"
             placeholder="Enter Book's Name"
             class="input-txt"
+            autocomplete="off"
           />
           <label for="create-price">Price: </label>
           <input
@@ -63,12 +65,18 @@
             name="create-price"
             placeholder="Enter Book's Price"
             class="input-txt"
+            autocomplete="off"
           />
           <button>Add</button>
         </form>
       </div>
     </section>
     <section class="books">
+      <div class="paging-container">
+        <button class="prev-btn" onclick="onPrevPage()">◀</button>
+        <div class="page-num-container"></div>
+        <button class="next-btn" onclick="onNextPage()">▶</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -80,11 +88,6 @@
         </thead>
         <tbody class="books-body"></tbody>
       </table>
-      <div class="paging-container">
-        <button class="prev-btn" onclick="onPrevPage()">◀</button>
-        <div class="page-num-container"></div>
-        <button class="next-btn" onclick="onNextPage()">▶</button>
-      </div>
     </section>
     <footer class="footer">&#169 Nadav Ben-Hur - Coding Academy June 2022</footer>
     <div class="book-modal">

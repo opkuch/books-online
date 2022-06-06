@@ -35,6 +35,9 @@ function renderBooks() {
 }
 
 function renderPages() {
+
+  //Render the right number of pages with regard to books amount
+
   var booksLength = getAllBooks().length
   const BOOKS_TO_SHOW = getBooksToShow()
   const pageAmount = Math.ceil(booksLength / BOOKS_TO_SHOW)
@@ -69,10 +72,14 @@ function onAddBook(ev) {
 }
 
 function onUpdateBook(updateBtn) {
+
+  // Giving the option to change a book's price, 
   const bookId = updateBtn.value
   const elPrice = document.querySelector(`.price${bookId}`)
   const elUpdateBtns = document.querySelectorAll('.update-btn')
   if (gIsUpdate.isUpdate) {
+
+      // Using the saved old price in global scope
     elPrice.innerHTML = gIsUpdate.oldPrice + '$'
     gIsUpdate.isUpdate = false
     for (var i = 0; i < elUpdateBtns.length; i++) {
@@ -80,27 +87,37 @@ function onUpdateBook(updateBtn) {
       elUpdateBtn.disabled = false
     }
   } else {
+
+    // updates the old price
     gIsUpdate.oldPrice = elPrice.innerHTML.substring(
       0,
       elPrice.innerHTML.indexOf('$')
     )
-    elPrice.innerHTML = `<form class="update-price-form" onsubmit="onUpdatePrice(event)"><input id="${bookId}" class="input-txt update-input update${bookId}" placeholder="New Price" name="update-price"/><button class="update-btn">&#10003</button></form>`
+
+    // Rendering price input
+    elPrice.innerHTML = `<form class="update-price-form" onsubmit="onUpdatePrice(event)" ><input id="${bookId}" class="input-txt update-input update${bookId}" placeholder="New Price" name="update-price" autocomplete="off"/><button class="update-btn">&#10003</button></form>`
     gIsUpdate.isUpdate = true
     for (var i = 0; i < elUpdateBtns.length; i++) {
+
+      // disabling the other update buttons,
       const elUpdateBtn = elUpdateBtns[i]
       elUpdateBtn.disabled = true
     }
+    //Clicked button shouldn't be disabled
     updateBtn.disabled = false
   }
 }
 
 function onUpdatePrice(ev) {
   ev.preventDefault()
+  //catching new price and relevant bookId
   const newPrice = document.querySelector('[name=update-price]').value
   if (!newPrice) newPrice = 0
   const bookId = document.querySelector('[name=update-price]').id
+  //Updates model
   updateBookPrice(bookId, newPrice)
   gIsUpdate.isUpdate = false
+  //Render
   renderBooks()
 }
 
@@ -126,11 +143,17 @@ function onSubRating(bookId) {
   subRating(bookId)
 }
 function onNextPage() {
+
+  //Remove clicked class from current page
   const pageNum = getPageIdx()
   const pageBtn = document.querySelector(`.page${pageNum}`)
   pageBtn.classList.remove('clicked')
+
+  //Add clicked class to the next page
   const nxtPageBtn = document.querySelector(`.page${pageNum + 1}`)
   nxtPageBtn.classList.add('clicked')
+
+  //Update gPageIdx and render 
   nextPage()
   renderBooks()
 }
@@ -157,12 +180,12 @@ function onSortByPrice() {
 }
 
 function onPageChange(pageBtn) {
-  const pageNum = pageBtn.value
   const pageBtns = document.querySelectorAll('.page-btn')
   for (var i = 0; i < pageBtns.length; i++) {
     const btn = pageBtns[i]
     btn.classList.remove('clicked')
   }
+  const pageNum = pageBtn.value
   pageChange(pageNum)
   pageBtn.classList.add('clicked')
   renderBooks()
