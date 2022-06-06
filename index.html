@@ -21,30 +21,29 @@
           name="filter-txt"
           oninput="onSetFilterBy({txt: this.value})"
           placeholder="Start typing..."
+          class="input-txt"
         />
-        <br />
-        <label>
-          <span>Maximum Price:</span>
-          <input
-            type="range"
-            min="0"
-            max="70"
-            value="70"
-            class="filter-price-range"
-            onchange="this.title=this.value; onSetFilterBy({maxPrice: +this.value})"
-          />
-        </label>
-        <label>
-          <span class="rating-txt">Minimum Rating:</span>
-          <input
-            type="range"
-            min="0"
-            max="10"
-            value="0"
-            class="filter-rating-range"
-            onchange="this.title=this.value; onSetFilterBy({minRating: +this.value})"
-          />
-        </label>
+        <label for="price-filter">Maximum Price: </label>
+        <input
+        type="range"
+        min="0"
+        max="70"
+        value="70"
+        class="filter-price-range"
+        name="price-filter"
+        onchange="this.title=this.value; onSetFilterBy({maxPrice: +this.value})"
+      />
+      <label for="rating-filter">Minimum Rating: </label>
+      <input
+      type="range"
+      min="0"
+      max="10"
+      value="0"
+      class="filter-rating-range"
+      name="rating-filter"
+      onchange="this.title=this.value; onSetFilterBy({minRating: +this.value})"
+    />
+        
       </section>
       <div class="create-books">
         <button class="create-btn" onclick="onCreateBook()">
@@ -56,12 +55,14 @@
             type="text"
             name="create-name"
             placeholder="Enter Book's Name"
+            class="input-txt"
           />
           <label for="create-price">Price: </label>
           <input
             type="text"
             name="create-price"
             placeholder="Enter Book's Price"
+            class="input-txt"
           />
           <button>Add</button>
         </form>
@@ -72,8 +73,8 @@
         <thead>
           <tr>
             <td class="books-title">Id</td>
-            <td class="books-title" onclick="onSortByTitle()">Title</td>
-            <td class="books-title" onclick="onSortByPrice()">Price</td>
+            <td class="books-title" onclick="onSortByTitle()">Title&#8593&#8595</td>
+            <td class="books-title" onclick="onSortByPrice()">Price&#8593&#8595</td>
             <td class="books-title" colspan="3">Actions</td>
           </tr>
         </thead>
@@ -85,6 +86,7 @@
         <button class="next-btn" onclick="onNextPage()">▶</button>
       </div>
     </section>
+    <footer class="footer">&#169 Nadav Ben-Hur - Coding Academy June 2022</footer>
     <div class="book-modal">
       <h2></h2>
       <img class="book-img" />
@@ -103,9 +105,10 @@
       </div>
       <button class="close-modal-btn" onclick="onCloseModal()">Close</button>
     </div>
-    <script src="/js/book.controller.js"></script>
-    <script src="/js/service/util.service.js"></script>
-    <script src="/js/service/storage.service.js"></script>
-    <script src="/js/service/book.service.js"></script>
+    <script src="js/book.controller.js"></script>
+    <script src="js/service/util.service.js"></script>
+    <script src="js/service/storage.service.js"></script>
+    <script src="js/service/book.service.js"></script>
   </body>
+
 </html>

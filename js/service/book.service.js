@@ -1,5 +1,4 @@
 'use strict'
-
 const STORAGE_KEY = 'booksDB'
 const MAX_PRICE = 70
 const MIN_PRICE = 20
@@ -65,7 +64,10 @@ function removeBook(bookId) {
 }
 
 function addBook(elName, elPrice) {
-  const newBook = _createBook(elName.value, +elPrice.value)
+  const bookName = elName.value
+  const bookPrice = +elPrice.value
+  if (!bookName || bookPrice === NaN) return
+  const newBook = _createBook(bookName, bookPrice)
   gBooks.unshift(newBook)
   _saveBookToStorage()
   elName.value = ''
@@ -85,7 +87,7 @@ function readBook(bookId) {
 
 function updateBookPrice(bookId, newPrice) {
   const book = gBooks.find((book) => book.id === bookId)
-  book.price = newPrice
+  book.price = +newPrice
   _saveBookToStorage()
 }
 

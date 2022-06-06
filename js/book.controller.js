@@ -65,6 +65,7 @@ function onAddBook(ev) {
   const price = document.querySelector('[name=create-price]')
   addBook(bookName, price)
   renderBooks()
+  renderPages()
 }
 
 function onUpdateBook(updateBtn) {
@@ -83,7 +84,7 @@ function onUpdateBook(updateBtn) {
       0,
       elPrice.innerHTML.indexOf('$')
     )
-    elPrice.innerHTML = `<form onsubmit="onUpdatePrice(event)"><input id="${bookId}" class="update-input update${bookId}" placeholder="New Price" name="update-price"/><button class="update-btn">Confirm</button></form>`
+    elPrice.innerHTML = `<form class="update-price-form" onsubmit="onUpdatePrice(event)"><input id="${bookId}" class="input-txt update-input update${bookId}" placeholder="New Price" name="update-price"/><button class="update-btn">&#10003</button></form>`
     gIsUpdate.isUpdate = true
     for (var i = 0; i < elUpdateBtns.length; i++) {
       const elUpdateBtn = elUpdateBtns[i]
@@ -104,9 +105,12 @@ function onUpdatePrice(ev) {
 }
 
 function onReadBook(bookId) {
+
   readBook(bookId)
   setQueryString(bookId)
-  document.querySelector('.book-modal').classList.add('active')
+  const elModal = document.querySelector('.book-modal')
+  elModal.classList.add('active')
+  
 }
 
 function onCloseModal() {

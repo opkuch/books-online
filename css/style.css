@@ -4,15 +4,25 @@
     box-sizing: border-box;
 }
 
-button {
-    cursor: pointer;
-    ;
+html {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(21, 22, 26);
 }
 
 body {
-    background-color: rgb(43, 38, 38);
-    height: 100vh;
+    background: linear-gradient(to bottom, rgba(38, 35, 35, 0.806), rgba(67, 78, 100, 0.363));
     margin: 0;
+    width: 70%;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.167);
+    border: 0.3px solid rgba(245, 245, 245, 0.283);
+    overflow-x: hidden;
+}
+
+button {
+    cursor: pointer;
 }
 
 .header {
@@ -21,9 +31,8 @@ body {
     align-items: center;
     user-select: none;
     flex-basis: 10%;
-    background-color: rgba(122, 139, 174, 0.2);
-    box-shadow: inset 0 0 30px rgba(245, 245, 245, 0.300);
-    border-bottom: 0.3px solid rgba(245, 245, 245, 0.400);
+    background: linear-gradient(to top, rgba(38, 35, 35, 0.29), rgba(122, 139, 174, 0.2));
+    border-bottom: 0.2px solid rgba(245, 245, 245, 0.200);
 }
 
 .header h1 {
@@ -37,6 +46,26 @@ body {
 .book-logo {
     height: 90px;
     width: 90px;
+}
+
+.input-txt {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    color: #fff;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.input-txt:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
 }
 
 .books {
@@ -54,18 +83,18 @@ body {
     height: 30%;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to top, rgb(60, 86, 116), rgba(45, 80, 113, 0.358));
+    background: linear-gradient(to top, rgb(50, 53, 56), rgba(32, 34, 36, 0.358));
     order: -2;
     color: whitesmoke;
     font-family: 'Arial';
     margin-bottom: 50px;
     border-radius: 5%;
-    border: 0.5px solid rgba(245, 245, 245, 0.377);
+    border: 0.2px solid rgba(245, 245, 245, 0.377);
     padding: 15px;
     width: 50%;
     margin-left: 25%;
     margin-top: 20px;
-    box-shadow: inset 0 0 10px rgb(201, 203, 238, 0.4);
+    box-shadow: 0 0 3px rgb(201, 203, 238, 0.2);
 }
 
 .books table {
@@ -83,8 +112,12 @@ td {
 .read-btn {
     background: linear-gradient(to bottom, rgb(34, 65, 31), rgb(181, 237, 196));
 }
-
+.update-price-form {
+    display: flex;
+    justify-content: space-evenly;
+}
 .update-btn {
+
     background: linear-gradient(to bottom, rgb(121, 99, 46), rgb(237, 228, 181));
 
 }
@@ -137,7 +170,7 @@ td {
     text-align: center;
 }
 
-.action:hover {
+.action:hover, .update-btn:hover{
     opacity: 0.7;
 }
 
@@ -149,20 +182,20 @@ td {
     padding: 30px 20px;
     width: 300px;
     color: rgb(251, 222, 222);
-    background-color: rgba(105, 137, 166, 0.642);
+    background-color: rgba(45, 57, 69, 0.642);
     border: 0.5px rgba(245, 245, 245, 0.429) solid;
     text-align: center;
     box-shadow: inset 0 0 10px rgb(201, 203, 238, 0.4);
     z-index: 2;
     position: absolute;
-    left: -20%;
-    top: 30%;
-    transform: translateX(-100%);
+    right: -20%;
+    top: 29%;
+    transform: translateX(100%);
     transition: transform 500ms ease;
 }
 
 .book-modal.active {
-    transform: translateX(100%);
+    transform: translateX(-100%);
     transition: transform 500ms ease;
 }
 
@@ -216,7 +249,7 @@ td {
 }
 
 .book-filter input {
-    width: 40%;
+    width: 70%;
     align-self: center;
 }
 
@@ -260,11 +293,11 @@ td {
     font-size: 1em;
     font-family: 'Arial';
     position: relative;
-    right: -40%;
+    right: -60%;
 }
 
 [name=create-name], [name=create-price] {
-    width: 50%;
+    width: 70%;
 }
 
 .create-books form.active {
@@ -307,4 +340,12 @@ td {
 
 .update-input {
     width: 65%;
+}
+
+.footer {
+    display: flex;
+    color: whitesmoke;
+    margin-top: 50px;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
 }
